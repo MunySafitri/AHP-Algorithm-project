@@ -1,6 +1,8 @@
 #include "system.h"
 #include "muny.h"
 #include "matriks.h"
+
+
 int main(){
 	int pilih;
 	bingkai();
@@ -14,13 +16,12 @@ int main(){
 		switch(pilih){
 			case 1 : signIn(); break;
 			case 2 : login(); break;
-			case 3 : exit(0); break;
+			case 3 : gotoxy(0,30); exit(0); break;
 			default: break;		
 		}
 		
 	}
 	
-	gotoxy(0,70);
+	gotoxy(0,30);
 }
 	
-
