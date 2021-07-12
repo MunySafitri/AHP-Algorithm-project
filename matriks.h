@@ -4,27 +4,54 @@
 #include "system.h"
 
 void hitung(){
+	
 	int jumlah;
 	int Jumlah;
-	Jumlah=matriks(jumlah);
-	//gotoxy(2,5);printf("%d",Jumlah);
-	jmlh_Matriks(Jumlah);
-		
+	int pilihan;
+	menu:
+	Jumlah=MenuPertama(jumlah);
+	gotoxy(2,16);printf("%d",Jumlah);
+	//Enter();
+	if(Jumlah ==1){
+		pilihan =matriks(jumlah);
+		jmlh_Matriks(pilihan);
+	}else if(Jumlah == 2){
+		dua:
+		jumlah = MainKedua(jumlah);
+		gotoxy(2,20);printf("%d",jumlah);
+		//Enter();
+		if(jumlah ==1){
+			//gotoxy(2,20);printf("%s",logins.id);
+			MenambahSubjek();
+			goto dua;
+		}if(jumlah == 4){
+			//printf("sampaidisini");
+			goto menu;
+		}
+	}else{
+		return;
+	}
 	return;
 }
+
+
 void jmlh_Matriks(int jumlah){
 	double nilaiIR [13] = {0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59 };
-	
 	 
 	 do{
 	 	bersih_tampilan();
 	 	bersih_tampilan_main();
-	 	int i,j ,l=8;
+	 	int i,j ,l=8,p=9;
 	 	//gotoxy(2,7);printf(jumlah);
 		for(i=0;i<jumlah;i++){
             gotoxy(2,l);printf("Masukkan nama kriteria ke-%i: ",i+1);
-            scanf(" %[^\n]s",kriteria.nama_criteria[i]);  
-			l+=1;     
+            gotoxy(2,p);scanf(" %[^\n]s",kriteria.nama_criteria[i]);  
+			l+=2;
+			p+=2; 
+			if (l==24){
+				l=8,p=9;
+				bersih_tampilan_main();	
+			}    
         }
         
         bersih_tampilan_main();
@@ -90,7 +117,7 @@ void jmlh_Matriks(int jumlah){
         //gotoxy(2,7);printf("CL4: %.2f\n",kriteria.cl);
         
 		char *nm_matriks[15] ={"tiga","empat","lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh","Sebelas","Dua Belas","Tiga Belas"};
-        printf("%s",nm_matriks[jumlah-3]);
+        //printf("%s",nm_matriks[jumlah-3]);
 		kriteria.cr = kriteria.cl / nilaiIR[jumlah-3];
         gotoxy(2,8);printf("nilai dari matriks ke");
 		gotoxy(2,9);printf("%s adalah %.2f",nm_matriks[jumlah-3],kriteria.cr);
@@ -106,12 +133,27 @@ void jmlh_Matriks(int jumlah){
         }else{
         	bersih_tampilan_main();
         	gotoxy(2,8);printf("Penilaian data sudah benar!");
+        	char tumbal[40];
+        	//strcpy(tumbal,logins.pass);
+        	//strcat(tumbal,"/Data.txt")
+        	//FILE *simpan=fopen(tumbal,"wb+");
         	Enter();
 		}
 
     }while(kriteria.cl > 0.1);
-    //lanjut ke menghitung subjek dan yang memenuhi bobot lalu diurutkan;
-    //next time
+    //next , bagaimana cara masukan matriks yang berbeda, dengan isi file yang berbeda setelah memasukkan data
+    //bukan hanya masuk ke Data.txt aja,dimana letak harus meminta nama programnya
+    
+}
+
+void MenambahSubjek(){
+	char tumbal[40];	
+	strcpy(tumbal,logins.pass);
+	strcat(tumbal,"/Data.txt");
+	
+	//gotoxy(2,18);printf("%s\n",tumbal);
+	Enter();
+	
 }
 
 
