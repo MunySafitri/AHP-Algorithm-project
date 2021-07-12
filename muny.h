@@ -28,10 +28,13 @@ struct datas kriteria;
 struct data{
 	char id[30];
 	char pass[30];
+	char direk[30];
 };
 struct data logins;
 struct data logins2;
 
+void MenambahSubjek();
+int MainKedua(int Pilihans);
 void gotoxy(int x,int y);
 void Enter();
 void bersih_tampilan();
